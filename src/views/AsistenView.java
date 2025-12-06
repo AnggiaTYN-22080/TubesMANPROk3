@@ -47,4 +47,61 @@ public class AsistenView {
             }
         }
     }
+
+    private void showTambahEvent() {
+        System.out.println("\n=== TAMBAH EVENT ===");
+
+        System.out.print("Nama Event: ");
+        String nama = App.sc.nextLine();
+
+        System.out.print("Tanggal (YYYY-MM-DD): ");
+        String tanggal = App.sc.nextLine();
+
+        System.out.print("Jumlah Undangan: ");
+        int undangan = Integer.parseInt(App.sc.nextLine());
+
+        System.out.print("Budget: ");
+        double budget = Double.parseDouble(App.sc.nextLine());
+
+        System.out.print("ID Jenis Event: ");
+        int idJenis = Integer.parseInt(App.sc.nextLine());
+
+        System.out.print("ID Klien: ");
+        int idKlien = Integer.parseInt(App.sc.nextLine());
+
+        boolean ok = service.tambahEvent(nama, tanggal, undangan, budget, idJenis, idKlien);
+
+        System.out.println(ok ? "Event berhasil ditambah!" : "Gagal menambah event.");
+    }
+
+    private void showAlokasiVendor() {
+        System.out.println("\n=== ALOKASIKAN VENDOR ===");
+
+        System.out.print("ID Event: ");
+        int idEvent = Integer.parseInt(App.sc.nextLine());
+
+        System.out.print("ID Vendor: ");
+        int idVendor = Integer.parseInt(App.sc.nextLine());
+
+        System.out.print("Harga Dealing: ");
+        double harga = Double.parseDouble(App.sc.nextLine());
+
+        boolean ok = service.alokasikanVendor(idEvent, idVendor, harga);
+
+        System.out.println(ok ? "Vendor berhasil dialokasikan." : "Gagal mengalokasikan vendor.");
+    }
+
+    private void showUpdateStatus() {
+        System.out.println("\n=== UPDATE STATUS EVENT ===");
+
+        System.out.print("ID Event: ");
+        int idEvent = Integer.parseInt(App.sc.nextLine());
+
+        System.out.print("Status baru: ");
+        String status = App.sc.nextLine();
+
+        boolean ok = service.updateStatus(idEvent, status);
+
+        System.out.println(ok ? "Status berhasil diupdate." : "Gagal update status.");
+    }
 }

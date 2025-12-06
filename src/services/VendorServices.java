@@ -12,10 +12,10 @@ public class VendorServices {
     private final JenisVendorRepository jenisRepo = new JenisVendorRepository();
 
 
-    public List<JenisVendor> getAllJenisVendor() {
-        return jenisRepo.findAll();
-    }
-    public boolean addJenisVendor(String nama) {
-        return jenisRepo.insert(nama);
-    }
+    // public List<JenisVendor> getAllJenisVendor() {
+    //     return jenisRepo.findAll();
+    // }
+    // public boolean addJenisVendor(String nama) {
+    //     return jenisRepo.insert(nama);
+    // }
 }
