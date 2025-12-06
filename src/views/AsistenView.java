@@ -122,4 +122,35 @@ public class AsistenView {
             System.out.println("---------------------------------");
         }
     }
+
+    private void showTambahKlien() {
+        System.out.println("\n=== TAMBAH KLIEN BARU ===");
+
+        System.out.print("Nama Klien   : ");
+        String nama = App.sc.nextLine();
+
+        System.out.print("Alamat       : ");
+        String alamat = App.sc.nextLine();
+
+        System.out.print("No. Telepon  : ");
+        String telp = App.sc.nextLine();
+
+        System.out.print("Email        : ");
+        String email = App.sc.nextLine();
+
+        boolean ok = service.tambahKlien(nama, alamat, telp, email);
+
+        System.out.println(ok ? "Klien berhasil ditambahkan!" : "Gagal menambah klien.");
+    }
+
+    private void showKlienSaya() {
+        System.out.println("\n=== KLIEN YANG SAYA TANGANI ===");
+
+        List<Klien> list = service.getKlienByAsisten();
+
+        for (Klien k : list) {
+            System.out.println(k.getIdKlien() + ". " + k.getNama() +
+                            " | " + k.getEmail());
+        }
+    }
 }
