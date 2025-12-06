@@ -39,4 +39,88 @@ public class PemilikView {
             }
         }
     }
+
+    private void kelolaAsisten() {
+        System.out.println("\n=== DAFTAR ASISTEN ===");
+        List<User> list = service.getAllAsisten();
+
+        for (User u : list) {
+            System.out.println(u.getIdUser() + ". " + u.getNama() + " (" + u.getUsername() + ")");
+        }
+
+        System.out.println("\n1. Tambah Asisten");
+        System.out.println("2. Edit Asisten");
+        System.out.println("3. Hapus Asisten");
+        System.out.println("0. Kembali");
+        System.out.print("Pilih: ");
+
+        int pil = Integer.parseInt(App.sc.nextLine());
+
+        switch (pil) {
+            case 1 -> tambahAsisten();
+            case 2 -> editAsisten();
+            case 3 -> hapusAsisten();
+            case 0 -> {
+            }
+            default -> System.out.println("Pilihan tidak valid.");
+        }
+    }
+
+    private void tambahAsisten() {
+        System.out.println("\n=== TAMBAH ASISTEN ===");
+
+        System.out.print("Nama: ");
+        String nama = App.sc.nextLine();
+
+        System.out.print("Alamat: ");
+        String alamat = App.sc.nextLine();
+
+        System.out.print("Telp: ");
+        String telp = App.sc.nextLine();
+
+        System.out.print("Username: ");
+        String user = App.sc.nextLine();
+
+        System.out.print("Password: ");
+        String pass = App.sc.nextLine();
+
+        User u = new User(0, nama, alamat, telp, user, pass);
+
+        boolean ok = service.addAsisten(u);
+        System.out.println(ok ? "Asisten ditambahkan." : "Gagal menambah.");
+    }
+
+    private void editAsisten() {
+        System.out.print("ID Asisten: ");
+        int id = Integer.parseInt(App.sc.nextLine());
+
+        System.out.print("Nama baru: ");
+        String nama = App.sc.nextLine();
+
+        System.out.print("Alamat: ");
+        String alamat = App.sc.nextLine();
+
+        System.out.print("NoTelp: ");
+        String telp = App.sc.nextLine();
+
+        System.out.print("Username: ");
+        String user = App.sc.nextLine();
+
+        System.out.print("Password: ");
+        String pass = App.sc.nextLine();
+
+        User u = new User(id, nama, alamat, telp, user, pass);
+
+        boolean ok = service.editAsisten(u);
+        System.out.println(ok ? "Berhasil update." : "Gagal update.");
+    }
+
+    private void hapusAsisten() {
+        System.out.print("ID Asisten: ");
+        int id = Integer.parseInt(App.sc.nextLine());
+
+        boolean ok = service.deleteAsisten(id);
+        System.out.println(ok ? "Berhasil hapus." : "Gagal hapus.");
+    }
+    
 }
