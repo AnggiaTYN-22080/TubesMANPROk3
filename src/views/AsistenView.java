@@ -104,4 +104,22 @@ public class AsistenView {
 
         System.out.println(ok ? "Status berhasil diupdate." : "Gagal update status.");
     }
+
+    private void showDetailKlienEvent() {
+        System.out.println("\n=== DETAIL KLIEN & EVENT ===");
+
+        List<String[]> list = service.getDetailKlienEvent();
+        DecimalFormat df = new DecimalFormat("#,###");
+
+        for (String[] d : list) {
+            System.out.println("Asisten    : " + d[0]);
+            System.out.println("Klien      : " + d[1]);
+            System.out.println("Event      : " + d[2]);
+            System.out.println("Tanggal    : " + d[3]);
+            System.out.println("Undangan   : " + d[4]);
+            System.out.println("Budget     : Rp " + df.format(Double.parseDouble(d[5])));
+            System.out.println("JenisEvent : " + d[6]);
+            System.out.println("---------------------------------");
+        }
+    }
 }
