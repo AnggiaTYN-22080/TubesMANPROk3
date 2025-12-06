@@ -27,7 +27,7 @@ public class VendorView {
             switch (pil) {
                 case 1 -> tambahVendor();
                 case 2 -> pilihVendor();
-    public void menuJenisVendor() {
+                case 0 -> { r    public void menuJenisVendor() {
         while (true) {
             System.out.println("\n=== JENIS VENDOR ===");
             List<JenisVendor> list = service.getAllJenisVendor();
@@ -201,12 +201,12 @@ public class VendorView {
         }
 
         boolean ok = service.deleteVendor(idVendor);
-        System.out.println(ok ? "Vendor berhasil dihapus." : "Gagal menghapus vendor.");
+        System.out.println(ok ? "Vendor berhasil dihapus." 
+    }
+    : "Gagal menghapus vendor.");
     private void tambahJenisVendor() {
         System.out.print("Nama jenis vendor baru: ");
         String nama = App.sc.nextLine();
 
         boolean ok = service.addJenisVendor(nama);
         System.out.println(ok ? "Jenis vendor berhasil ditambahkan." : "Gagal menambah jenis vendor.");
-    }
-}
