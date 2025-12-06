@@ -104,4 +104,53 @@ public class AsistenView {
 
         System.out.println(ok ? "Status berhasil diupdate." : "Gagal update status.");
     }
+
+    private void showDetailKlienEvent() {
+        System.out.println("\n=== DETAIL KLIEN & EVENT ===");
+
+        List<String[]> list = service.getDetailKlienEvent();
+        DecimalFormat df = new DecimalFormat("#,###");
+
+        for (String[] d : list) {
+            System.out.println("Asisten    : " + d[0]);
+            System.out.println("Klien      : " + d[1]);
+            System.out.println("Event      : " + d[2]);
+            System.out.println("Tanggal    : " + d[3]);
+            System.out.println("Undangan   : " + d[4]);
+            System.out.println("Budget     : Rp " + df.format(Double.parseDouble(d[5])));
+            System.out.println("JenisEvent : " + d[6]);
+            System.out.println("---------------------------------");
+        }
+    }
+
+    private void showTambahKlien() {
+        System.out.println("\n=== TAMBAH KLIEN BARU ===");
+
+        System.out.print("Nama Klien   : ");
+        String nama = App.sc.nextLine();
+
+        System.out.print("Alamat       : ");
+        String alamat = App.sc.nextLine();
+
+        System.out.print("No. Telepon  : ");
+        String telp = App.sc.nextLine();
+
+        System.out.print("Email        : ");
+        String email = App.sc.nextLine();
+
+        boolean ok = service.tambahKlien(nama, alamat, telp, email);
+
+        System.out.println(ok ? "Klien berhasil ditambahkan!" : "Gagal menambah klien.");
+    }
+
+    private void showKlienSaya() {
+        System.out.println("\n=== KLIEN YANG SAYA TANGANI ===");
+
+        List<Klien> list = service.getKlienByAsisten();
+
+        for (Klien k : list) {
+            System.out.println(k.getIdKlien() + ". " + k.getNama() +
+                            " | " + k.getEmail());
+        }
+    }
 }

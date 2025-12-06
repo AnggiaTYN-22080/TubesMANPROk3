@@ -13,7 +13,6 @@ public class AsistenService {
     private final KlienRepository klienRepo = new KlienRepository();
     private final EventRepository eventRepo = new EventRepository();
 
-    
     public List<Klien> getDaftarKlien() {
         return klienRepo.findAll();
     }
