@@ -48,34 +48,60 @@ public class AsistenView {
         }
     }
 
-    private void showTambahKlien() {
-        System.out.println("\n=== TAMBAH KLIEN BARU ===");
+    private void showTambahEvent() {
+        System.out.println("\n=== TAMBAH EVENT ===");
 
-        System.out.print("Nama Klien   : ");
+        System.out.print("Nama Event: ");
         String nama = App.sc.nextLine();
 
-        System.out.print("Alamat       : ");
-        String alamat = App.sc.nextLine();
+        System.out.print("Tanggal (YYYY-MM-DD): ");
+        String tanggal = App.sc.nextLine();
 
-        System.out.print("No. Telepon  : ");
-        String telp = App.sc.nextLine();
+        System.out.print("Jumlah Undangan: ");
+        int undangan = Integer.parseInt(App.sc.nextLine());
 
-        System.out.print("Email        : ");
-        String email = App.sc.nextLine();
+        System.out.print("Budget: ");
+        double budget = Double.parseDouble(App.sc.nextLine());
 
-        boolean ok = service.tambahKlien(nama, alamat, telp, email);
+        System.out.print("ID Jenis Event: ");
+        int idJenis = Integer.parseInt(App.sc.nextLine());
 
-        System.out.println(ok ? "Klien berhasil ditambahkan!" : "Gagal menambah klien.");
+        System.out.print("ID Klien: ");
+        int idKlien = Integer.parseInt(App.sc.nextLine());
+
+        boolean ok = service.tambahEvent(nama, tanggal, undangan, budget, idJenis, idKlien);
+
+        System.out.println(ok ? "Event berhasil ditambah!" : "Gagal menambah event.");
     }
 
-    private void showKlienSaya() {
-        System.out.println("\n=== KLIEN YANG SAYA TANGANI ===");
+    private void showAlokasiVendor() {
+        System.out.println("\n=== ALOKASIKAN VENDOR ===");
 
-        List<Klien> list = service.getKlienByAsisten();
+        System.out.print("ID Event: ");
+        int idEvent = Integer.parseInt(App.sc.nextLine());
 
-        for (Klien k : list) {
-            System.out.println(k.getIdKlien() + ". " + k.getNama() +
-                            " | " + k.getEmail());
-        }
+        System.out.print("ID Vendor: ");
+        int idVendor = Integer.parseInt(App.sc.nextLine());
+
+        System.out.print("Harga Dealing: ");
+        double harga = Double.parseDouble(App.sc.nextLine());
+
+        boolean ok = service.alokasikanVendor(idEvent, idVendor, harga);
+
+        System.out.println(ok ? "Vendor berhasil dialokasikan." : "Gagal mengalokasikan vendor.");
+    }
+
+    private void showUpdateStatus() {
+        System.out.println("\n=== UPDATE STATUS EVENT ===");
+
+        System.out.print("ID Event: ");
+        int idEvent = Integer.parseInt(App.sc.nextLine());
+
+        System.out.print("Status baru: ");
+        String status = App.sc.nextLine();
+
+        boolean ok = service.updateStatus(idEvent, status);
+
+        System.out.println(ok ? "Status berhasil diupdate." : "Gagal update status.");
     }
 }
