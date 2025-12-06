@@ -37,4 +37,12 @@ public class VendorService {
     public JenisVendor getJenisVendorById(int id) {
         return jenisRepo.findById(id);
     }
+
+    public List<JenisVendor> getAllJenisVendor() {
+        return jenisRepo.findAll();
+    }
+    
+    public boolean addJenisVendor(String nama) {
+        return jenisRepo.insert(nama);
+    }
 }
