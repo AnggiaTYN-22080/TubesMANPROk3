@@ -13,6 +13,7 @@ public class AsistenService {
     private final KlienRepository klienRepo = new KlienRepository();
     private final EventRepository eventRepo = new EventRepository();
 
+
     public List<Klien> getDaftarKlien() {
         return klienRepo.findAll();
     }
@@ -49,8 +50,8 @@ public class AsistenService {
     }
 
     public List<Event> getEventByAsisten() {
-    int id = UserSession.getUserId();
-    return eventRepo.getEventsByAsisten(id);
+        int id = UserSession.getUserId();
+        return eventRepo.getEventsByAsisten(id);
     }
 
     public List<Klien> getKlienByAsisten() {
