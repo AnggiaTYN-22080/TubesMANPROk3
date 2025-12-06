@@ -1,3 +1,5 @@
+package views;
+
 import app.App;
 import core.UserSession;
 import models.User;
@@ -122,5 +124,34 @@ public class PemilikView {
         boolean ok = service.deleteAsisten(id);
         System.out.println(ok ? "Berhasil hapus." : "Gagal hapus.");
     }
-    
+
+    private void laporanKinerjaAsisten() {
+        System.out.println("\n=== DAFTAR ASISTEN ===");
+        List<User> list = service.getAllAsisten();
+
+        for (User u : list) {
+            System.out.println(u.getIdUser() + ". " + u.getNama());
+        }
+
+        System.out.print("Masukkan ID Asisten (0 = kembali): ");
+        int idAsisten = Integer.parseInt(App.sc.nextLine());
+        if (idAsisten == 0) return;
+
+        var laporan = service.getLaporanEventAsisten(idAsisten);
+
+        System.out.println("\n=== EVENT YANG DIKELOLA ASISTEN ===");
+        System.out.printf("%-5s | %-25s | %-12s | %-12s | %-15s\n",
+                "ID", "Nama Event", "Tanggal", "Status", "Nama Klien");
+        System.out.println("-------------------------------------------------------------------");
+
+        if (laporan.isEmpty()) {
+            System.out.println("Asisten ini belum menangani event.");
+            return;
+        }
+
+        for (String[] row : laporan) {
+            System.out.printf("%-5s | %-25s | %-12s | %-12s | %-15s\n",
+                    row[0], row[1], row[2], row[3], row[4]);
+        }
+    }
 }
